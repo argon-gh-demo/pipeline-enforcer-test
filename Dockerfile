@@ -20,15 +20,13 @@ RUN apt-get update \
         gcc \
         make \
     && apt-get clean \
-    &&rm /usr/sbin/bpftool \
-
-    &&apt update && apt install -y git \
+    && rm /usr/sbin/bpftool \
+    && apt update && apt install -y git \
     && git clone --recurse-submodules https://github.com/libbpf/bpftool.git \
-
-    &&cd bpftool/src \
-    &&make install \
-    &&mkdir /home/github \
-    &&ln -s /usr/local/sbin/bpftool /usr/sbin/bpftool \
+    && cd bpftool/src \
+    && make install \
+    && mkdir /home/github \
+    && ln -s /usr/local/sbin/bpftool /usr/sbin/bpftool \
     && rm -rf /var/lib/apt/lists/* \
     && useradd -m github \
     && usermod -aG sudo github \
